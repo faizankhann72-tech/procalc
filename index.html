@@ -1,731 +1,563 @@
+Here is an HTML document that creates a "Love Calculator" web application. You can save and run it in your browser.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Pro Studio Mobile - Calculator | Currency | Syntax</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>💖 Love Calculator | The Romance Meter 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            background: linear-gradient(145deg, #0a0e17 0%, #06090f 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 12px;
-            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, 'Roboto', sans-serif;
-        }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #ff9a9e 0%, #fad0c4 50%, #fad0c4 100%);
+      font-family: 'Segoe UI', 'Poppins', 'Quicksand', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-        /* LOGIN OVERLAY - Mobile Optimized */
-        .login-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(6, 10, 18, 0.98);
-            backdrop-filter: blur(20px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 20px;
-        }
+    /* main card */
+    .calculator-card {
+      max-width: 620px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(2px);
+      border-radius: 64px;
+      box-shadow: 0 30px 45px rgba(0, 0, 0, 0.2), 0 8px 18px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+      text-align: center;
+      padding: 28px 24px 40px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
 
-        .login-card {
-            background: rgba(25, 32, 45, 0.95);
-            backdrop-filter: blur(8px);
-            border-radius: 2rem;
-            padding: 2rem 1.5rem;
-            width: 100%;
-            max-width: 320px;
-            border: 1px solid rgba(59, 130, 246, 0.5);
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(59, 130, 246, 0.2);
-            text-align: center;
-        }
+    .calculator-card:hover {
+      transform: scale(1.01);
+    }
 
-        .login-card h2 {
-            color: #eef5ff;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            font-size: 1.6rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c42e4a, #ff6f61, #ffb347);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-        .login-card input {
-            width: 100%;
-            background: #0f121e;
-            border: 1px solid #2c3548;
-            padding: 16px 18px;
-            border-radius: 60px;
-            font-size: 1.1rem;
-            color: white;
-            outline: none;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            letter-spacing: 3px;
-            font-weight: 500;
-        }
+    .subhead {
+      font-size: 1rem;
+      color: #b3475c;
+      background: #fff0f0;
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 60px;
+      margin-bottom: 28px;
+      font-weight: 500;
+      box-shadow: inset 0 0 0 1px #ffe0e0, 0 2px 5px rgba(0,0,0,0.02);
+    }
 
-        .login-card input:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-        }
+    /* input group */
+    .input-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 32px;
+      justify-content: space-between;
+    }
 
-        .login-card button {
-            background: linear-gradient(135deg, #3b82f6, #1e40af);
-            width: 100%;
-            border: none;
-            padding: 14px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 1rem;
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+    .name-field {
+      flex: 1;
+      min-width: 200px;
+      background: #fffcf7;
+      border-radius: 48px;
+      padding: 8px 18px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(0,0,0,0.02);
+      transition: all 0.2s;
+    }
 
-        .login-card button:active {
-            transform: scale(0.97);
-        }
+    .name-field label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #d96c6c;
+      margin-top: 8px;
+      text-align: left;
+    }
 
-        .error-msg {
-            color: #f87171;
-            margin-top: 12px;
-            font-size: 0.8rem;
-        }
+    .name-field input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 1.3rem;
+      font-weight: 600;
+      padding: 12px 0 10px 0;
+      outline: none;
+      font-family: inherit;
+      color: #2d2f36;
+      border-bottom: 2px solid #ffe0e0;
+      transition: 0.2s;
+    }
 
-        /* MAIN APP - Android/Mobile Layout */
-        .main-app {
-            display: none;
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            gap: 16px;
-            flex-direction: column;
-            padding-bottom: 20px;
-        }
+    .name-field input:focus {
+      border-bottom-color: #ff8a7a;
+      color: #a13242;
+    }
 
-        /* Cards - Mobile First */
-        .card {
-            background: rgba(18, 24, 34, 0.92);
-            backdrop-filter: blur(10px);
-            border-radius: 1.8rem;
-            border: 1px solid rgba(66, 99, 145, 0.4);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
-            transition: transform 0.1s;
-        }
+    .name-field input::placeholder {
+      color: #e7b9b9;
+      font-weight: 400;
+      font-size: 1rem;
+    }
 
-        .card-header {
-            padding: 1rem 1.2rem;
-            background: rgba(12, 17, 26, 0.8);
-            border-bottom: 1px solid rgba(72, 110, 160, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    /* heart button */
+    .calculate-btn {
+      background: linear-gradient(120deg, #ff5e62, #ff9966);
+      border: none;
+      padding: 16px 28px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: white;
+      border-radius: 60px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 28px;
+      transition: all 0.25s;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 0 10px 18px rgba(255, 80, 80, 0.4);
+    }
 
-        .card-header h3 {
-            color: #cbdffc;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
+    .calculate-btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.02);
+      box-shadow: 0 18px 28px rgba(255, 80, 80, 0.5);
+    }
 
-        .card-header i {
-            font-size: 1.3rem;
-        }
+    .calculate-btn:active {
+      transform: translateY(2px);
+    }
 
-        /* Calculator - Big buttons for touch */
-        .calculator-panel {
-            padding: 1.2rem;
-        }
+    /* result area */
+    .result-card {
+      background: #fff9f7;
+      border-radius: 60px;
+      padding: 24px 20px;
+      margin: 8px 0 24px;
+      box-shadow: inset 0 1px 4px #ffd9d9, 0 12px 20px rgba(0, 0, 0, 0.05);
+    }
 
-        .calc-screen {
-            background: #0b0e16;
-            border-radius: 1.5rem;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid #2a3448;
-        }
+    .percentage {
+      font-size: 4.8rem;
+      font-weight: 800;
+      background: linear-gradient(145deg, #d64550, #ff8855);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      line-height: 1;
+      letter-spacing: 4px;
+    }
 
-        #calcDisplay {
-            width: 100%;
-            background: transparent;
-            border: none;
-            text-align: right;
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #f0f6ff;
-            outline: none;
-            font-family: 'Courier New', 'Fira Code', monospace;
-        }
+    .love-message {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #b34e5a;
+      margin: 16px 0 6px;
+    }
 
-        .calc-buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-        }
+    .romantic-quote {
+      font-size: 1rem;
+      color: #f07c6c;
+      background: #fff0ec;
+      display: inline-block;
+      padding: 8px 20px;
+      border-radius: 40px;
+      margin-top: 12px;
+      font-weight: 500;
+    }
 
-        .calc-btn {
-            background: #1e2538;
-            border: none;
-            padding: 18px 0;
-            border-radius: 1.2rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #eef3ff;
-            cursor: pointer;
-            transition: all 0.05s linear;
-            touch-action: manipulation;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        }
+    /* emoji flair */
+    .heartbeat {
+      animation: tinyPulse 1.5s infinite;
+      display: inline-block;
+    }
 
-        .calc-btn:active {
-            transform: scale(0.94);
-            background: #2c364e;
-        }
+    @keyframes tinyPulse {
+      0% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; text-shadow: 0 0 3px #ff5e6e; }
+      100% { transform: scale(1); opacity: 0.8; }
+    }
 
-        .operator {
-            background: #2a3958;
-            color: #7aaef0;
-        }
+    .names-badge {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      background: #ffece8;
+      border-radius: 100px;
+      padding: 8px 18px;
+      margin-bottom: 12px;
+      color: #b94b5c;
+    }
 
-        .equal {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: white;
-        }
+    .names-badge span {
+      background: white;
+      padding: 4px 14px;
+      border-radius: 50px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
 
-        .clear {
-            background: #3e2a3c;
-            color: #ffb4a2;
-        }
+    .reset-info {
+      font-size: 0.7rem;
+      color: #d28b8b;
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-        /* Currency Panel */
-        .currency-panel {
-            padding: 1.2rem;
-        }
+    .reset-info button {
+      background: none;
+      border: none;
+      color: #cc6e6e;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
 
-        .currency-row {
-            margin-bottom: 1rem;
-        }
+    footer {
+      font-size: 0.7rem;
+      color: #cf8b8b;
+      margin-top: 24px;
+    }
 
-        .currency-row label {
-            color: #9aaec9;
-            font-size: 0.7rem;
-            letter-spacing: 0.8px;
-            margin-bottom: 6px;
-            display: block;
-            font-weight: 500;
-        }
-
-        .currency-input, .currency-select {
-            width: 100%;
-            background: #0f121e;
-            border: 1px solid #2f3a50;
-            padding: 14px 14px;
-            border-radius: 1.2rem;
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            touch-action: manipulation;
-        }
-
-        .convert-btn {
-            background: #2563eb;
-            width: 100%;
-            border: none;
-            padding: 14px;
-            border-radius: 1.2rem;
-            font-weight: 700;
-            font-size: 1rem;
-            color: white;
-            margin-top: 6px;
-            cursor: pointer;
-            touch-action: manipulation;
-        }
-
-        .convert-btn:active {
-            background: #1d4ed8;
-            transform: scale(0.98);
-        }
-
-        .result-area {
-            background: #0b0f18;
-            border-radius: 1.2rem;
-            padding: 1rem;
-            margin-top: 1rem;
-            text-align: center;
-            border: 1px solid #2d3a52;
-        }
-
-        .result-area span {
-            color: #bbd7fb;
-            font-size: 1.5rem;
-            font-weight: 600;
-            word-break: break-word;
-        }
-
-        /* Syntax Panel - Mobile optimized */
-        .syntax-panel {
-            padding: 1rem;
-        }
-
-        .editor-toolbar {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .lang-badge {
-            background: #1e2a44;
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            color: #8bb5ff;
-        }
-
-        .syntax-textarea {
-            width: 100%;
-            background: #01020a;
-            color: #e2e8f0;
-            border: 1px solid #2a3855;
-            border-radius: 1.2rem;
-            padding: 1rem;
-            font-family: 'Fira Code', 'Courier New', monospace;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            resize: vertical;
-            outline: none;
-            min-height: 140px;
-        }
-
-        .syntax-highlight-block {
-            background: #0a0e17;
-            border-radius: 1.2rem;
-            margin-top: 1rem;
-            padding: 1rem;
-            border-left: 4px solid #3b82f6;
-            max-height: 200px;
-            overflow: auto;
-        }
-
-        .highlight-pre {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.75rem;
-            color: #cbd5e6;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-
-        .keyword {
-            color: #ff79c6;
-            font-weight: 500;
-        }
-        .string {
-            color: #a3e635;
-        }
-        .comment {
-            color: #6272a4;
-        }
-        .number {
-            color: #bd93f9;
-        }
-        .function {
-            color: #50fa7b;
-        }
-
-        .btn-copy {
-            background: #1f2a44;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 40px;
-            color: white;
-            font-size: 0.7rem;
-            font-weight: 500;
-            cursor: pointer;
-            touch-action: manipulation;
-        }
-
-        .btn-copy:active {
-            background: #2a3a60;
-            transform: scale(0.96);
-        }
-
-        /* Android specific - better touch feedback */
-        @media (hover: none) and (pointer: coarse) {
-            .calc-btn, .convert-btn, .btn-copy, .login-card button {
-                cursor: default;
-            }
-        }
-
-        /* Extra small devices */
-        @media (max-width: 420px) {
-            body {
-                padding: 8px;
-            }
-            .calc-btn {
-                padding: 14px 0;
-                font-size: 1.2rem;
-            }
-            .result-area span {
-                font-size: 1.2rem;
-            }
-            .card-header h3 {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    @media (max-width: 500px) {
+      .calculator-card {
+        padding: 20px 18px 30px;
+      }
+      .percentage {
+        font-size: 3.4rem;
+      }
+      .love-message {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- LOGIN SECTION -->
-<div id="loginOverlay" class="login-overlay">
-    <div class="login-card">
-        <h2>🔐 PRO STUDIO</h2>
-        <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off" inputmode="numeric">
-        <button id="loginBtn">UNLOCK</button>
-        <div id="loginError" class="error-msg"></div>
-        <div style="margin-top: 12px; font-size: 0.65rem; color: #6e85b0;">🔑 Password: 456456</div>
-    </div>
-</div>
+<div class="calculator-card">
+  <h1>
+    💘 LOVE CALCULATOR 💘
+    <span class="heartbeat">❤️‍🔥</span>
+  </h1>
+  <div class="subhead">✨ Discover your cosmic chemistry ✨</div>
 
-<!-- MAIN APPLICATION - Android Optimized -->
-<div id="mainApp" class="main-app">
-
-    <!-- CALCULATOR MODULE -->
-    <div class="card">
-        <div class="card-header">
-            <span style="font-size: 1.3rem;">🧮</span>
-            <h3>Pro Calculator</h3>
-        </div>
-        <div class="calculator-panel">
-            <div class="calc-screen">
-                <input type="text" id="calcDisplay" readonly value="0">
-            </div>
-            <div class="calc-buttons">
-                <button class="calc-btn clear" data-action="clear">AC</button>
-                <button class="calc-btn operator" data-op="(">(</button>
-                <button class="calc-btn operator" data-op=")">)</button>
-                <button class="calc-btn operator" data-op="/">÷</button>
-                
-                <button class="calc-btn" data-num="7">7</button>
-                <button class="calc-btn" data-num="8">8</button>
-                <button class="calc-btn" data-num="9">9</button>
-                <button class="calc-btn operator" data-op="*">×</button>
-                
-                <button class="calc-btn" data-num="4">4</button>
-                <button class="calc-btn" data-num="5">5</button>
-                <button class="calc-btn" data-num="6">6</button>
-                <button class="calc-btn operator" data-op="-">−</button>
-                
-                <button class="calc-btn" data-num="1">1</button>
-                <button class="calc-btn" data-num="2">2</button>
-                <button class="calc-btn" data-num="3">3</button>
-                <button class="calc-btn operator" data-op="+">+</button>
-                
-                <button class="calc-btn" data-num="0">0</button>
-                <button class="calc-btn" data-num=".">.</button>
-                <button class="calc-btn operator" data-op="%">%</button>
-                <button class="calc-btn equal" id="calcEqual">=</button>
-            </div>
-        </div>
+  <div class="input-group">
+    <div class="name-field">
+      <label>🌸 YOUR NAME</label>
+      <input type="text" id="yourName" placeholder="e.g., Emma" autocomplete="off" value="">
     </div>
-
-    <!-- CURRENCY CONVERTER MODULE -->
-    <div class="card">
-        <div class="card-header">
-            <span style="font-size: 1.3rem;">💱</span>
-            <h3>Currency Converter</h3>
-        </div>
-        <div class="currency-panel">
-            <div class="currency-row">
-                <label>💰 AMOUNT</label>
-                <input type="number" id="amountInput" class="currency-input" value="100" step="any" inputmode="decimal">
-            </div>
-            <div class="currency-row">
-                <label>📤 FROM</label>
-                <select id="fromCurrency" class="currency-select">
-                    <option value="USD">USD - US Dollar</option>
-                    <option value="EUR">EUR - Euro</option>
-                    <option value="GBP">GBP - British Pound</option>
-                    <option value="JPY">JPY - Japanese Yen</option>
-                    <option value="INR">INR - Indian Rupee</option>
-                    <option value="CAD">CAD - Canadian Dollar</option>
-                    <option value="AUD">AUD - Australian Dollar</option>
-                    <option value="CHF">CHF - Swiss Franc</option>
-                    <option value="CNY">CNY - Chinese Yuan</option>
-                </select>
-            </div>
-            <div class="currency-row">
-                <label>📥 TO</label>
-                <select id="toCurrency" class="currency-select">
-                    <option value="USD">USD - US Dollar</option>
-                    <option value="EUR" selected>EUR - Euro</option>
-                    <option value="GBP">GBP - British Pound</option>
-                    <option value="JPY">JPY - Japanese Yen</option>
-                    <option value="INR">INR - Indian Rupee</option>
-                    <option value="CAD">CAD - Canadian Dollar</option>
-                    <option value="AUD">AUD - Australian Dollar</option>
-                    <option value="CHF">CHF - Swiss Franc</option>
-                    <option value="CNY">CNY - Chinese Yuan</option>
-                </select>
-            </div>
-            <button id="convertCurrencyBtn" class="convert-btn">🔄 CONVERT</button>
-            <div class="result-area">
-                <span id="conversionResult">—</span>
-            </div>
-            <div style="font-size: 0.6rem; text-align: center; margin-top: 10px; color: #5e77a3;">⚡ Live market rates (updated)</div>
-        </div>
+    <div class="name-field">
+      <label>🌻 CRUSH / PARTNER</label>
+      <input type="text" id="partnerName" placeholder="e.g., Noah" autocomplete="off" value="">
     </div>
+  </div>
 
-    <!-- SYNTAX HIGHLIGHTER MODULE -->
-    <div class="card">
-        <div class="card-header">
-            <span style="font-size: 1.3rem;">◉ ◉ ◉</span>
-            <h3>Syntax Lab</h3>
-        </div>
-        <div class="syntax-panel">
-            <div class="editor-toolbar">
-                <div class="lang-badge">JS / Python / JSON</div>
-                <button id="copySyntaxBtn" class="btn-copy">📋 Copy</button>
-            </div>
-            <textarea id="codeEditor" class="syntax-textarea" rows="5" placeholder="Write your code here...&#10;function hello() {&#10;    return &quot;Android Pro&quot;;&#10;}"></textarea>
-            <div class="syntax-highlight-block">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 6px;"><span style="color:#90a7d0; font-size:0.7rem;">✨ Live Highlight</span></div>
-                <div id="highlightPreview" class="highlight-pre">// Code will be highlighted here</div>
-            </div>
-        </div>
+  <button class="calculate-btn" id="calculateBtn">
+    <span>💞 CALCULATE LOVE</span> 
+    <span>✨</span>
+  </button>
+
+  <div class="result-card" id="resultCard">
+    <div class="names-badge" id="namesBadge">
+      <span>💗 ___</span> <span>➕</span> <span>___ 💗</span>
     </div>
+    <div class="percentage" id="lovePercent">0%</div>
+    <div class="love-message" id="loveMessage">Enter two names to start</div>
+    <div class="romantic-quote" id="romanticQuote">💌 Love is waiting... 💌</div>
+  </div>
+  
+  <div class="reset-info">
+    <span>🎲 <strong>Fun love algorithm</strong> — based on name vibrations + random spark!</span>
+    <button id="randomExampleBtn">✨ Surprise me ✨</button>
+  </div>
+  <footer>💖 Made with passion — for entertainment only 💖</footer>
 </div>
 
 <script>
-    // ===================== AUTHENTICATION =====================
-    const loginOverlay = document.getElementById('loginOverlay');
-    const mainApp = document.getElementById('mainApp');
-    const passwordInput = document.getElementById('passwordInput');
-    const loginBtn = document.getElementById('loginBtn');
-    const loginError = document.getElementById('loginError');
-    const CORRECT_PASS = "456456";
+  (function() {
+    // DOM elements
+    const yourNameInput = document.getElementById('yourName');
+    const partnerNameInput = document.getElementById('partnerName');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const lovePercentSpan = document.getElementById('lovePercent');
+    const loveMessageDiv = document.getElementById('loveMessage');
+    const romanticQuoteSpan = document.getElementById('romanticQuote');
+    const namesBadgeSpan = document.getElementById('namesBadge');
+    const randomExampleBtn = document.getElementById('randomExampleBtn');
 
-    function attemptLogin() {
-        if (passwordInput.value === CORRECT_PASS) {
-            loginOverlay.style.display = 'none';
-            mainApp.style.display = 'flex';
-            loginError.innerText = '';
-            // Trigger initial updates
-            performConversion();
-            updateHighlight();
-        } else {
-            loginError.innerText = '❌ Wrong password. Access denied.';
-            passwordInput.value = '';
-            passwordInput.focus();
-        }
+    // helper: clean and normalize string for extra consistency
+    function cleanName(str) {
+      return str.trim().toLowerCase().replace(/[^a-z]/g, '');
     }
 
-    loginBtn.addEventListener('click', attemptLogin);
-    passwordInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') attemptLogin();
-    });
+    // core algorithm: deterministic pseudo-love score based on name synergy + dynamic offset
+    // returns number 0-100, floating friendly, but we floor to integer for UI
+    function calculateLoveScore(name1, name2) {
+      if (!name1 && !name2) return 0;
+      // if one is empty, low score but not zero for fun
+      if (!name1 || !name2) {
+        const onlyOne = (name1 || name2).length;
+        const base = Math.min(28, onlyOne * 2.3);
+        return Math.floor(Math.min(42, base));
+      }
 
-    // ===================== PROFESSIONAL CALCULATOR =====================
-    const calcDisplay = document.getElementById('calcDisplay');
-    let currentExpression = "0";
-    
-    function updateDisplay() {
-        calcDisplay.value = currentExpression;
+      const str1 = cleanName(name1);
+      const str2 = cleanName(name2);
+      
+      if (str1.length === 0 && str2.length === 0) return 0;
+      if (str1.length === 0 || str2.length === 0) return 18; // mysterious mismatch
+
+      // ---------- 1. Common letters synergy (classic love calculator style) ----------
+      const set1 = new Set(str1.split(''));
+      const set2 = new Set(str2.split(''));
+      let common = 0;
+      for (let ch of set1) {
+        if (set2.has(ch)) common++;
+      }
+      const uniqueTotal = set1.size + set2.size;
+      const commonRatio = uniqueTotal > 0 ? (common / uniqueTotal) : 0;   // 0..1
+      let synergyScore = commonRatio * 55;  // max 55 from common letters
+
+      // ---------- 2. Length harmony (max 20 points) ----------
+      const lenDiff = Math.abs(str1.length - str2.length);
+      let lengthHarmony = Math.max(0, 20 - lenDiff * 2.2);
+      lengthHarmony = Math.min(20, lengthHarmony);
+      
+      // ---------- 3. Vowel romance factor (max 15) ----------
+      const vowels = new Set(['a','e','i','o','u']);
+      function vowelCount(s) {
+        let count = 0;
+        for(let ch of s) if(vowels.has(ch)) count++;
+        return count;
+      }
+      const v1 = vowelCount(str1);
+      const v2 = vowelCount(str2);
+      let vowelBlend = Math.min(15, (v1 + v2) * 1.6);
+      
+      // ---------- 4. Special "soulmate" bonus (matching first/last char) ----------
+      let specialBonus = 0;
+      if (str1[0] === str2[0]) specialBonus += 6;
+      if (str1[str1.length-1] === str2[str2.length-1]) specialBonus += 4;
+      if (str1.includes(str2.slice(0,2)) || str2.includes(str1.slice(0,2))) specialBonus += 3;
+      specialBonus = Math.min(12, specialBonus);
+      
+      // Base score (pre-random)
+      let baseScore = synergyScore + lengthHarmony + vowelBlend + specialBonus;
+      
+      // Deterministic pseudo-random from names combined (for a pinch of magic)
+      // Creates a stable but unique "destiny offset" between -8 and +12
+      let combinedHash = 0;
+      const combinedString = (str1 + "♥" + str2).toLowerCase();
+      for (let i = 0; i < combinedString.length; i++) {
+        combinedHash = ((combinedHash << 5) - combinedHash) + combinedString.charCodeAt(i);
+        combinedHash |= 0;
+      }
+      const destinyFactor = Math.abs(combinedHash % 21) - 8; // range -8 .. 12
+      
+      let finalScore = baseScore + destinyFactor;
+      
+      // also give a tiny boost if both names are not empty and length > 3 (chemistry)
+      if (str1.length >= 3 && str2.length >= 3) finalScore += 2;
+      
+      // clamp between 0 and 100
+      finalScore = Math.min(100, Math.max(0, Math.floor(finalScore)));
+      
+      // extra touch: if both names identical and non-empty -> high love score but not 100 by default
+      if (str1 === str2 && str1.length > 0 && finalScore < 78) {
+        finalScore = Math.min(100, finalScore + 14);
+      }
+      
+      return finalScore;
+    }
+
+    // Get romantic message & quote based on love percentage
+    function getLoveDetails(percentage, nameA, nameB) {
+      let message = "";
+      let quote = "";
+      
+      if (percentage <= 15) {
+        message = "💔 Oh dear... maybe just friendship vibes? 💔";
+        quote = "🌙 " + (nameA ? nameA : "You") + " and " + (nameB ? nameB : "them") + " need a little cosmic realignment. ✨";
+      } 
+      else if (percentage <= 35) {
+        message = "🍂 A spark could grow... give it time! 🍂";
+        quote = "💫 A gentle flame needs nurturing — patience unlocks hearts.";
+      }
+      else if (percentage <= 55) {
+        message = "💛 Good chemistry! There's something sweet here. 💛";
+        quote = "🌻 Like sunshine after rain, this connection has potential!";
+      }
+      else if (percentage <= 75) {
+        message = "💖 Wow! Strong bond — you two make hearts flutter! 💖";
+        quote = "🌟 A beautiful harmony! Keep dancing to this rhythm.";
+      }
+      else if (percentage <= 89) {
+        message = "💞 DESTINED CONNECTION! True love energy! 💞";
+        quote = "🔥 Fireworks every time! The universe whispers your names together.";
+      }
+      else {
+        message = "💗💗💗 100% PURE LOVE! SOULMATES ALERT! 💗💗💗";
+        quote = "👑 Cosmic love story! You two are written in the stars. ✨💖";
+      }
+      
+      // custom sprinkle if both names are very short or funny edge
+      if (percentage === 100) {
+        quote = "❤️‍🔥 INFINITE LOVE! A match made in heaven! ❤️‍🔥";
+      } else if (percentage > 92) {
+        quote = "🌈 Legendary love! Cherish this magic forever. 🌈";
+      }
+      return { message, quote };
+    }
+
+    // update UI with current names and recalc score
+    function updateLoveCalculation() {
+      let yourNameRaw = yourNameInput.value;
+      let partnerRaw = partnerNameInput.value;
+      
+      // Trim for display but keep as is for showing
+      let displayName1 = yourNameRaw.trim() === "" ? "?" : yourNameRaw.trim();
+      let displayName2 = partnerRaw.trim() === "" ? "?" : partnerRaw.trim();
+      
+      // update names badge
+      namesBadgeSpan.innerHTML = `<span>💗 ${escapeHtml(displayName1)}</span> <span>➕</span> <span>${escapeHtml(displayName2)} 💗</span>`;
+      
+      // compute love score
+      let score = calculateLoveScore(yourNameRaw, partnerRaw);
+      
+      // store integer score
+      lovePercentSpan.innerText = score + "%";
+      
+      // get dynamic messages
+      const { message, quote } = getLoveDetails(score, displayName1, displayName2);
+      loveMessageDiv.innerText = message;
+      romanticQuoteSpan.innerText = quote;
+      
+      // little extra style: animate percentage pop
+      lovePercentSpan.style.transform = "scale(1.05)";
+      setTimeout(() => { if(lovePercentSpan) lovePercentSpan.style.transform = ""; }, 200);
     }
     
-    function evaluateExpression(expr) {
-        try {
-            let processed = expr.replace(/×/g, '*').replace(/÷/g, '/');
-            if (processed.trim() === "") return "0";
-            // Safe evaluation using Function
-            let result = new Function('return (' + processed + ')')();
-            if (isNaN(result) || !isFinite(result)) throw new Error("Invalid");
-            result = parseFloat(result.toFixed(8));
-            return result.toString();
-        } catch(e) {
-            return "Error";
-        }
+    // simple escape to avoid XSS
+    function escapeHtml(str) {
+      if (!str) return "";
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+        return c;
+      });
     }
     
-    function handleCalculator(btn) {
-        if (btn.classList.contains('clear')) {
-            currentExpression = "0";
-            updateDisplay();
-            return;
-        }
-        if (btn.id === 'calcEqual') {
-            let res = evaluateExpression(currentExpression);
-            if (res !== "Error") {
-                currentExpression = res;
-            } else {
-                currentExpression = "Error";
-                updateDisplay();
-                setTimeout(() => { currentExpression = "0"; updateDisplay(); }, 1300);
-                return;
-            }
-            updateDisplay();
-            return;
-        }
-        
-        let val = '';
-        if (btn.dataset.num !== undefined) val = btn.dataset.num;
-        else if (btn.dataset.op !== undefined) val = btn.dataset.op;
-        else return;
-        
-        if (currentExpression === "0" && val !== '.' && !isNaN(parseInt(val))) {
-            currentExpression = val;
-        } else if (currentExpression === "Error") {
-            currentExpression = val;
-        } else {
-            currentExpression += val;
-        }
-        updateDisplay();
+    // random example (predefined cute couples or random fun names)
+    function setRandomExample() {
+      const randomCouples = [
+        { name1: "Luna", name2: "Leo" },
+        { name1: "Sophia", name2: "Ethan" },
+        { name1: "Mia", name2: "Liam" },
+        { name1: "Zara", name2: "Elijah" },
+        { name1: "Amara", name2: "Julian" },
+        { name1: "Ruby", name2: "Oliver" },
+        { name1: "Chloe", name2: "Noah" },
+        { name1: "Grace", name2: "Henry" },
+        { name1: "Aurora", name2: "Mateo" }
+      ];
+      const randomIndex = Math.floor(Math.random() * randomCouples.length);
+      const chosen = randomCouples[randomIndex];
+      yourNameInput.value = chosen.name1;
+      partnerNameInput.value = chosen.name2;
+      updateLoveCalculation();
+      // tiny focus effect
+      yourNameInput.style.backgroundColor = "#fff3f0";
+      partnerNameInput.style.backgroundColor = "#fff3f0";
+      setTimeout(() => {
+        yourNameInput.style.backgroundColor = "";
+        partnerNameInput.style.backgroundColor = "";
+      }, 400);
     }
     
-    document.querySelectorAll('.calc-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            handleCalculator(btn);
-        });
-        // Touch feedback for Android
-        btn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            handleCalculator(btn);
-        }, { passive: false });
+    // event listeners
+    calculateBtn.addEventListener('click', () => {
+      updateLoveCalculation();
+      // playful bounce on button
+      calculateBtn.style.transform = "scale(0.98)";
+      setTimeout(() => { if(calculateBtn) calculateBtn.style.transform = ""; }, 120);
     });
     
-    // ===================== CURRENCY CONVERTER with real-time API =====================
-    let exchangeRates = {
-        USD: 1, EUR: 0.92, GBP: 0.79, JPY: 150.2, INR: 83.5, CAD: 1.36, AUD: 1.52, CHF: 0.88, CNY: 7.24
-    };
-    
-    // Fetch live rates for better accuracy
-    async function updateLiveRates() {
-        try {
-            const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD');
-            if (response.ok) {
-                const data = await response.json();
-                if (data.rates) {
-                    for (let cur in exchangeRates) {
-                        if (data.rates[cur]) exchangeRates[cur] = data.rates[cur];
-                    }
-                }
-            }
-        } catch (err) {
-            console.log("Using cached rates");
-        }
-        performConversion(); // refresh after update
-    }
-    updateLiveRates();
-    setInterval(updateLiveRates, 1800000); // update every 30 mins
-    
-    const amountInput = document.getElementById('amountInput');
-    const fromCurrency = document.getElementById('fromCurrency');
-    const toCurrency = document.getElementById('toCurrency');
-    const convertBtn = document.getElementById('convertCurrencyBtn');
-    const conversionResultSpan = document.getElementById('conversionResult');
-    
-    function performConversion() {
-        let amount = parseFloat(amountInput.value);
-        if (isNaN(amount)) amount = 0;
-        const from = fromCurrency.value;
-        const to = toCurrency.value;
-        if (from === to) {
-            conversionResultSpan.innerText = `${amount.toFixed(2)} ${to}`;
-            return;
-        }
-        const amountInUSD = amount / exchangeRates[from];
-        const converted = amountInUSD * exchangeRates[to];
-        conversionResultSpan.innerText = `${converted.toFixed(4)} ${to}`;
+    // realtime optional? we do update on both input for live experience but better with button, 
+    // however we also listen to input to instantly refresh preview? 
+    // Nice UX: live update as they type (but without heavy overhead) 
+    function handleInputChange() {
+      updateLoveCalculation();
     }
     
-    convertBtn.addEventListener('click', performConversion);
-    amountInput.addEventListener('input', performConversion);
-    fromCurrency.addEventListener('change', performConversion);
-    toCurrency.addEventListener('change', performConversion);
+    yourNameInput.addEventListener('input', handleInputChange);
+    partnerNameInput.addEventListener('input', handleInputChange);
     
-    // ===================== SYNTAX HIGHLIGHTER (Enhanced) =====================
-    const codeEditor = document.getElementById('codeEditor');
-    const highlightPreview = document.getElementById('highlightPreview');
-    
-    function syntaxHighlight(code) {
-        let escaped = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        // Protect strings
-        let stringMatches = [];
-        let stringHolder = escaped.replace(/(".*?"|'.*?'|`.*?`)/gs, (match) => {
-            stringMatches.push(match);
-            return `__STR_${stringMatches.length-1}__`;
-        });
-        // Highlight comments
-        let commentHolder = stringHolder.replace(/\/\/.*?$|\/\*[\s\S]*?\*\//gm, (match) => {
-            return `<span class="comment">${match}</span>`;
-        });
-        // Restore strings
-        commentHolder = commentHolder.replace(/__STR_(\d+)__/g, (_, idx) => {
-            let str = stringMatches[parseInt(idx)];
-            return `<span class="string">${str}</span>`;
-        });
-        // Numbers
-        let withNumbers = commentHolder.replace(/\b(\d+(\.\d+)?)\b/g, '<span class="number">$1</span>');
-        // Keywords
-        const keywords = ['function', 'const', 'let', 'var', 'if', 'else', 'for', 'while', 'return', 'class', 'extends', 'super', 'import', 'export', 'default', 'new', 'try', 'catch', 'finally', 'throw', 'switch', 'case', 'break', 'continue', 'typeof', 'instanceof', 'true', 'false', 'null', 'undefined', 'async', 'await', 'def', 'print', 'lambda', 'static'];
-        let keywordRegex = new RegExp(`\\b(${keywords.join('|')})\\b`, 'g');
-        let withKeywords = withNumbers.replace(keywordRegex, '<span class="keyword">$1</span>');
-        // Function calls
-        let withFunctions = withKeywords.replace(/\b([a-zA-Z_][a-zA-Z0-9_]*)\s*\(/g, '<span class="function">$1</span>(');
-        return withFunctions;
-    }
-    
-    function updateHighlight() {
-        let rawCode = codeEditor.value;
-        if (rawCode.trim() === "") {
-            highlightPreview.innerHTML = '<span style="color:#6c86a3;">// start typing to see syntax magic</span>';
-            return;
-        }
-        highlightPreview.innerHTML = syntaxHighlight(rawCode);
-    }
-    
-    codeEditor.addEventListener('input', updateHighlight);
-    codeEditor.addEventListener('keyup', updateHighlight);
-    
-    // Copy button with Android toast-like feedback
-    const copyBtn = document.getElementById('copySyntaxBtn');
-    copyBtn.addEventListener('click', async () => {
-        const codeText = codeEditor.value;
-        try {
-            await navigator.clipboard.writeText(codeText);
-            const original = copyBtn.innerText;
-            copyBtn.innerText = '✓ Copied!';
-            setTimeout(() => { copyBtn.innerText = original; }, 1500);
-        } catch (err) {
-            alert("Could not copy");
-        }
+    randomExampleBtn.addEventListener('click', () => {
+      setRandomExample();
     });
     
-    // Initial load and set demo content
-    window.addEventListener('load', () => {
-        // Set demo code for Android
-        codeEditor.value = `// Android Studio Pro\nclass MobileApp {\n    constructor(name) {\n        this.name = name;\n    }\n    \n    run() {\n        console.log(\`Running \${this.name} on Android\`);\n        return "Success";\n    }\n}\n\nconst app = new MobileApp("Syntax Pro");\napp.run();`;
-        updateHighlight();
-        performConversion();
-        calcDisplay.value = "0";
-        currentExpression = "0";
+    // initial default values so it doesn't look empty (show cute demo)
+    yourNameInput.value = "Alex";
+    partnerNameInput.value = "Taylor";
+    updateLoveCalculation();
+    
+    // also add keypress for enter on inputs
+    const inputs = [yourNameInput, partnerNameInput];
+    inputs.forEach(inp => {
+      inp.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          updateLoveCalculation();
+          calculateBtn.style.transform = "scale(0.98)";
+          setTimeout(() => { if(calculateBtn) calculateBtn.style.transform = ""; }, 120);
+        }
+      });
     });
+    
+    // little initial flourish: change badge emoji
+    setTimeout(() => {
+      const badgeDiv = document.querySelector('.names-badge');
+      if(badgeDiv) badgeDiv.style.transition = "0.2s";
+    }, 50);
+  })();
 </script>
 </body>
 </html>
+```
