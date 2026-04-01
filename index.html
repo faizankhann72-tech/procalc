@@ -1,12 +1,10 @@
-Here is an HTML document that creates a love calculator with responsive design that automatically adjusts to any window size.
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>💕 Love Calculator • Auto Responsive 💕</title>
+  <title>Love Calculator • Romantic Compatibility Meter</title>
   <style>
     * {
       margin: 0;
@@ -15,10 +13,9 @@ Here is an HTML document that creates a love calculator with responsive design t
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* FULLY RESPONSIVE - Auto adjusts to ANY window size */
     body {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      font-family: 'Segoe UI', 'Poppins', 'Roboto', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      font-family: 'Segoe UI', 'Poppins', 'Roboto', system-ui, -apple-system, sans-serif;
       min-height: 100vh;
       width: 100%;
       display: flex;
@@ -29,7 +26,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       overflow-x: hidden;
     }
 
-    /* Main Container - FULLY FLEXIBLE */
     .love-calculator {
       width: 100%;
       max-width: min(95%, 700px);
@@ -53,7 +49,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       }
     }
 
-    /* Header Section - Responsive typography */
     .header {
       background: linear-gradient(135deg, #ff6b6b, #ff8e8e, #ffb347);
       padding: clamp(20px, 6vw, 40px) clamp(16px, 5vw, 32px);
@@ -80,13 +75,11 @@ Here is an HTML document that creates a love calculator with responsive design t
       font-weight: 500;
     }
 
-    /* Content Area */
     .content {
       padding: clamp(20px, 6vw, 40px) clamp(16px, 5vw, 32px);
       background: #ffffff;
     }
 
-    /* Input Group - Auto responsive flex */
     .input-group {
       display: flex;
       gap: clamp(12px, 4vw, 24px);
@@ -134,7 +127,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       font-size: clamp(0.85rem, 3vw, 1rem);
     }
 
-    /* Calculate Button - Dynamic sizing */
     .calculate-btn {
       width: 100%;
       background: linear-gradient(120deg, #ff5e62, #ff9966);
@@ -165,7 +157,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       transform: translateY(2px);
     }
 
-    /* Result Card - Auto adjusts */
     .result-card {
       background: linear-gradient(135deg, #fff9f7, #fff5f0);
       border-radius: clamp(24px, 6vw, 48px);
@@ -175,7 +166,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       transition: all 0.3s ease;
     }
 
-    /* Names Badge - Wrapping auto */
     .names-badge {
       background: rgba(255, 107, 107, 0.12);
       border-radius: 100px;
@@ -199,7 +189,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       max-width: 100%;
     }
 
-    /* Percentage - Scales beautifully */
     .percentage {
       font-size: clamp(3rem, 15vw, 7rem);
       font-weight: 900;
@@ -213,7 +202,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       text-shadow: 2px 2px 20px rgba(255, 100, 100, 0.2);
     }
 
-    /* Message & Quote - Responsive text */
     .love-message {
       font-size: clamp(1rem, 4vw, 1.4rem);
       font-weight: 700;
@@ -235,7 +223,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       margin-top: clamp(8px, 2vw, 16px);
     }
 
-    /* Action Buttons Row - Flex wrap auto */
     .action-row {
       display: flex;
       gap: clamp(10px, 3vw, 16px);
@@ -265,7 +252,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       transform: scale(0.96);
     }
 
-    /* Footer - Always visible */
     .footer {
       background: #fff9f7;
       padding: clamp(12px, 3vw, 20px);
@@ -275,7 +261,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       border-top: 1px solid #ffe0e0;
     }
 
-    /* Responsive breakpoints - Fluid everything */
     @media (max-width: 550px) {
       .input-group {
         flex-direction: column;
@@ -302,21 +287,18 @@ Here is an HTML document that creates a love calculator with responsive design t
       }
     }
 
-    /* Large screens optimization */
     @media (min-width: 1400px) {
       .love-calculator {
         max-width: 800px;
       }
     }
 
-    /* Ultra-wide support */
     @media (min-width: 1920px) {
       .love-calculator {
         max-width: 900px;
       }
     }
 
-    /* Landscape mode on mobile */
     @media (max-height: 600px) and (orientation: landscape) {
       body {
         padding: 12px;
@@ -331,7 +313,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       }
     }
 
-    /* Heartbeat animation for emoji */
     @keyframes heartbeat {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.15); }
@@ -357,11 +338,11 @@ Here is an HTML document that creates a love calculator with responsive design t
     <div class="input-group">
       <div class="input-field">
         <label>🌸 YOUR NAME</label>
-        <input type="text" id="yourName" placeholder="e.g., Emma Watson" autocomplete="off" value="Emma">
+        <input type="text" id="yourName" placeholder="e.g., Emma" autocomplete="off" value="Emma">
       </div>
       <div class="input-field">
         <label>🌻 PARTNER'S NAME</label>
-        <input type="text" id="partnerName" placeholder="e.g., Liam Johnson" autocomplete="off" value="Liam">
+        <input type="text" id="partnerName" placeholder="e.g., Liam" autocomplete="off" value="Liam">
       </div>
     </div>
     
@@ -369,7 +350,7 @@ Here is an HTML document that creates a love calculator with responsive design t
       <span>💞</span> CALCULATE LOVE SCORE <span>✨</span>
     </button>
     
-    <div class="result-card" id="resultCard">
+    <div class="result-card">
       <div class="names-badge" id="namesBadge">
         <span>💗 Emma</span>
         <span>➕</span>
@@ -396,7 +377,6 @@ Here is an HTML document that creates a love calculator with responsive design t
 
 <script>
   (function() {
-    // DOM elements
     const yourNameInput = document.getElementById('yourName');
     const partnerNameInput = document.getElementById('partnerName');
     const calculateBtn = document.getElementById('calculateBtn');
@@ -408,25 +388,21 @@ Here is an HTML document that creates a love calculator with responsive design t
     const resetBtn = document.getElementById('resetBtn');
     const exampleBtn = document.getElementById('exampleBtn');
     
-    // Helper: clean name for algorithm (only letters, lowercase)
     function cleanName(str) {
       if (!str) return "";
       return str.trim().toLowerCase().replace(/[^a-z]/g, '');
     }
     
-    // Advanced love algorithm with deterministic + romantic randomness
     function calculateLoveScore(name1Raw, name2Raw) {
       const name1 = cleanName(name1Raw);
       const name2 = cleanName(name2Raw);
       
-      // Edge cases
       if (name1.length === 0 && name2.length === 0) return 0;
       if (name1.length === 0 || name2.length === 0) {
         const onlyOneLen = name1.length + name2.length;
         return Math.min(38, Math.max(12, onlyOneLen * 2.5));
       }
       
-      // 1. Common letters synergy (max 45 points)
       const set1 = new Set(name1.split(''));
       const set2 = new Set(name2.split(''));
       let commonCount = 0;
@@ -437,25 +413,21 @@ Here is an HTML document that creates a love calculator with responsive design t
       const commonRatio = totalUnique > 0 ? commonCount / totalUnique : 0;
       let synergyScore = commonRatio * 45;
       
-      // 2. Length harmony (max 20)
       const lenDiff = Math.abs(name1.length - name2.length);
       let lengthHarmony = Math.max(0, 20 - lenDiff * 2);
       lengthHarmony = Math.min(20, lengthHarmony);
       
-      // 3. Vowel romance factor (max 15)
       const vowels = new Set(['a', 'e', 'i', 'o', 'u']);
       const vowelCount1 = name1.split('').filter(ch => vowels.has(ch)).length;
       const vowelCount2 = name2.split('').filter(ch => vowels.has(ch)).length;
       let vowelScore = Math.min(15, (vowelCount1 + vowelCount2) * 1.5);
       
-      // 4. Special matching bonus (first char, last char, contains)
       let matchBonus = 0;
       if (name1[0] === name2[0]) matchBonus += 6;
       if (name1[name1.length-1] === name2[name2.length-1]) matchBonus += 5;
       if (name1.includes(name2.substring(0,2)) || name2.includes(name1.substring(0,2))) matchBonus += 4;
       matchBonus = Math.min(14, matchBonus);
       
-      // 5. Deterministic "destiny hash" (-8 to +12)
       let hash = 0;
       const combinedStr = name1 + "♥" + name2 + "love";
       for (let i = 0; i < combinedStr.length; i++) {
@@ -464,25 +436,20 @@ Here is an HTML document that creates a love calculator with responsive design t
       }
       const destinyOffset = Math.abs(hash % 21) - 8;
       
-      // Base calculation
       let baseScore = synergyScore + lengthHarmony + vowelScore + matchBonus;
       let finalScore = baseScore + destinyOffset;
       
-      // Extra chemistry boost for longer names
       if (name1.length >= 4 && name2.length >= 4) finalScore += 2;
       
-      // Soulmate bonus for identical names
       if (name1 === name2 && name1.length > 1) {
         finalScore = Math.min(100, finalScore + 12);
       }
       
-      // Ensure within 0-100 range
       finalScore = Math.min(100, Math.max(0, Math.floor(finalScore)));
       
       return finalScore;
     }
     
-    // Get romantic messages based on love percentage
     function getLoveDetails(percentage, nameA, nameB) {
       let message = "";
       let quote = "";
@@ -512,7 +479,6 @@ Here is an HTML document that creates a love calculator with responsive design t
         quote = "👑 Cosmic perfection! You're written in the stars together! ✨💖";
       }
       
-      // Special quotes for high scores
       if (percentage === 100) {
         quote = "❤️‍🔥 LEGENDARY LOVE! A match made in heaven! ❤️‍🔥";
       } else if (percentage >= 95) {
@@ -522,7 +488,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       return { message, quote };
     }
     
-    // Escape HTML for safety
     function escapeHtml(str) {
       if (!str) return "";
       return str.replace(/[&<>]/g, function(m) {
@@ -533,7 +498,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       });
     }
     
-    // Main update function
     function updateLoveCalculation() {
       let yourNameRaw = yourNameInput.value;
       let partnerRaw = partnerNameInput.value;
@@ -541,17 +505,14 @@ Here is an HTML document that creates a love calculator with responsive design t
       let displayName1 = yourNameRaw.trim() === "" ? "?" : yourNameRaw.trim();
       let displayName2 = partnerRaw.trim() === "" ? "?" : partnerRaw.trim();
       
-      // Update names badge with wrapping support
       namesBadgeSpan.innerHTML = `
         <span>💗 ${escapeHtml(displayName1)}</span>
         <span>➕</span>
         <span>${escapeHtml(displayName2)} 💗</span>
       `;
       
-      // Calculate love score
       let score = calculateLoveScore(yourNameRaw, partnerRaw);
       
-      // Animate percentage change
       lovePercentSpan.style.transform = "scale(1.1)";
       setTimeout(() => {
         if (lovePercentSpan) lovePercentSpan.style.transform = "";
@@ -559,13 +520,11 @@ Here is an HTML document that creates a love calculator with responsive design t
       
       lovePercentSpan.innerText = score + "%";
       
-      // Get and display messages
       const { message, quote } = getLoveDetails(score, displayName1, displayName2);
       loveMessageDiv.innerText = message;
       romanticQuoteSpan.innerText = quote;
     }
     
-    // Random couple generator (diverse examples)
     const randomCouples = [
       { name1: "Sophia", name2: "Ethan" },
       { name1: "Olivia", name2: "Noah" },
@@ -590,7 +549,6 @@ Here is an HTML document that creates a love calculator with responsive design t
       partnerNameInput.value = couple.name2;
       updateLoveCalculation();
       
-      // Visual feedback
       calculateBtn.style.transform = "scale(0.98)";
       setTimeout(() => {
         if (calculateBtn) calculateBtn.style.transform = "";
@@ -609,26 +567,21 @@ Here is an HTML document that creates a love calculator with responsive design t
       updateLoveCalculation();
     }
     
-    // Event listeners
     calculateBtn.addEventListener('click', () => {
       updateLoveCalculation();
-      // Button ripple effect
       calculateBtn.style.transform = "scale(0.98)";
       setTimeout(() => {
         if (calculateBtn) calculateBtn.style.transform = "";
       }, 120);
     });
     
-    // Real-time update on input
     yourNameInput.addEventListener('input', updateLoveCalculation);
     partnerNameInput.addEventListener('input', updateLoveCalculation);
     
-    // Action buttons
     randomBtn.addEventListener('click', setRandomCouple);
     resetBtn.addEventListener('click', resetNames);
     exampleBtn.addEventListener('click', setExample);
     
-    // Enter key support
     const handleEnter = (e) => {
       if (e.key === 'Enter') {
         e.preventDefault();
@@ -643,42 +596,11 @@ Here is an HTML document that creates a love calculator with responsive design t
     yourNameInput.addEventListener('keypress', handleEnter);
     partnerNameInput.addEventListener('keypress', handleEnter);
     
-    // Initial calculation with default values
     updateLoveCalculation();
     
-    // Window resize handler for any additional adjustments (optional)
     window.addEventListener('resize', () => {
-      // Just to ensure layout stays perfect - no action needed due to CSS clamp
       console.log("Window resized - layout auto-adjusted");
     });
-    
-    // Add a little heart animation on result click (fun)
-    const resultCard = document.querySelector('.result-card');
-    if (resultCard) {
-      resultCard.addEventListener('click', () => {
-        const heartEmoji = document.createElement('div');
-        heartEmoji.innerHTML = '❤️';
-        heartEmoji.style.position = 'fixed';
-        heartEmoji.style.left = '50%';
-        heartEmoji.style.top = '50%';
-        heartEmoji.style.transform = 'translate(-50%, -50%)';
-        heartEmoji.style.fontSize = '50px';
-        heartEmoji.style.opacity = '0';
-        heartEmoji.style.pointerEvents = 'none';
-        heartEmoji.style.transition = 'all 0.5s ease';
-        heartEmoji.style.zIndex = '9999';
-        document.body.appendChild(heartEmoji);
-        
-        setTimeout(() => {
-          heartEmoji.style.opacity = '1';
-          heartEmoji.style.transform = 'translate(-50%, -50%) scale(1.5)';
-        }, 10);
-        
-        setTimeout(() => {
-          heartEmoji.remove();
-        }, 500);
-      });
-    }
   })();
 </script>
 </body>
